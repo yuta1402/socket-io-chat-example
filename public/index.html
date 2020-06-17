@@ -3,8 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>socket.io chat example</title>
+        <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
         <h1>Socket IO Chat Example</h1>
+        <ul id="messages"></ul>
+        <form>
+            <input id="input_msg" /> <button>Send</button>
+        </form>
+        <script>
+            const socket = io();
+        </script>
     </body>
 </html>
