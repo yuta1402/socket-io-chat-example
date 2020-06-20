@@ -8,11 +8,28 @@
     <body>
         <h1>Socket IO Chat Example</h1>
         <ul id="messages"></ul>
-        <form>
+        <form id="message_form" action="#">
             <input id="input_msg" /> <button>Send</button>
         </form>
         <script>
             const socket = io();
+
+            const form = document.getElementById("message_form");
+            form.addEventListener("submit", () => {
+                const input_msg = document.getElementById("input_msg");
+                socket.emit("message", input_msg.value);
+                input_msg.value = "";
+            });
+
+            socket.on("message", (msg) => {
+                const li = document.createElement("li");
+                li.innerHTML = msg;
+
+                console.log(msg);
+
+                const list = document.getElementById("messages");
+                list.appendChild(li);
+            });
         </script>
     </body>
 </html>

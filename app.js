@@ -10,7 +10,10 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("connected");
+  socket.on("message", (msg) => {
+    console.log("message: " + msg);
+    io.emit("message", msg);
+  });
 });
 
 server.listen(PORT, () => {
